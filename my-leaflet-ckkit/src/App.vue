@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <my-leaflet style="width: 100%; height: 500px;"></my-leaflet>
+    <my-leaflet style="width: 100%; height: 500px;" :tPoints="points"></my-leaflet>
   </div>
 </template>
 
@@ -10,7 +10,8 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      points: [[41,119],[41.4, 119],[42, 119],[42.2, 119.5],[42.2, 120]]
     }
   },
   components: {

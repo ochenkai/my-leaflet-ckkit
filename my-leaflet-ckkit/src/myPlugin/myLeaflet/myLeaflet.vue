@@ -7,15 +7,25 @@
 <script>
 import Leaflet from "leaflet";
 import mapProvider from "../../common/mapProvider.js";
+import { AntPath, antPath } from 'leaflet-ant-path';
 
 export default {
+
   name: 'myLeaflet',
+  props: {
+  	tPoints: {
+  		type: Array,
+  		default: function () {
+        return []
+      }
+  	}
+  },
   data() {
     return {
       map: null,
       init_map_data: null,
       reset_btn: null,
-      mapType: '高德卫星图',
+      mapType: '高德矢量图',
       mapTypeArrays: ['高德矢量图' ,'高德卫星图', '天地图矢量图', '天地图卫星图', '谷歌矢量图', '谷歌卫星图'],
       mapConfig: {
         zoom: 9,
@@ -26,11 +36,16 @@ export default {
       }
     };
   },
+  watch: {
+    tPoints (val) {
+      this.addPoints(val)
+    }
+  },
   mounted() {
     console.log("地图页面")
     this.initMap();
     this.initTiteLayer();
-    // this.addMapBtn();
+    this.addPoints(this.tPoints)
   },
   methods: {
     initMap () {
@@ -95,6 +110,25 @@ export default {
         default:
           L.tileLayer.mapProvider("Google.Normal.Map", {}).addTo(this.map);
           break;
+      }
+    },
+    addPoints (p) {
+      var path = antPath(p, {
+        "paused": false,
+        "reverse": false,
+        "delay": 3000,
+        "dashArray": [5, 20],
+        "weight": 5,
+        "opacity": 0.8,
+        "color": "#339933",
+        "pulseColor": "#11EE11"
+      })
+      path.addTo(this.map);
+      console.log(path.getBounds())
+      if(JSON.stringify(path.getBounds()) != "{}") {
+      	this.map.fitBounds(path.getBounds(), {
+      		maxZoom: 16
+      	});
       }
     }
   },
