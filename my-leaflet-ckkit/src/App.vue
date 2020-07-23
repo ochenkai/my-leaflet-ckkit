@@ -11,7 +11,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      points: [[41,119],[41.4, 119],[42, 119],[42.2, 119.5],[42.2, 120]]
+      points: [{lat:41,lng:119,color:'#00f'},{lat:41.4, lng:119, color: '#f00'},{lat:42, lng:119, color: '#f00'},{lat:42.2, lng:119.5, color: '#00f'},{lat: 42.2, lng:120, color: '#f00'},{lat: 42.5, lng:120.2, color:'#00f'},{lat:43, lng:121,color:'#f00'}]
     }
   },
   components: {

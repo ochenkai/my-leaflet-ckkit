@@ -113,23 +113,52 @@ export default {
       }
     },
     addPoints (p) {
-      var path = antPath(p, {
-        "paused": false,
-        "reverse": false,
-        "delay": 3000,
-        "dashArray": [5, 20],
-        "weight": 5,
-        "opacity": 0.8,
-        "color": "#339933",
-        "pulseColor": "#11EE11"
+      let group=new L.layerGroup()
+      var previous = p[0]
+      let pointArray = []
+      p.forEach(point => {
+        if (previous.color === point.color) {
+          pointArray.push([point.lat, point.lng])
+          previous = point
+        } else {
+          var path = antPath(pointArray, {
+            "paused": false,
+            "reverse": false,
+            "delay": 3000,
+            "dashArray": [5, 20],
+            "weight": 5,
+            "opacity": 0.8,
+            "color": previous.color,
+            "pulseColor": "#11EE11"
+          })
+          path.addTo(this.map);
+          pointArray = []
+          pointArray.push([previous.lat, previous.lng])
+          pointArray.push([point.lat, point.lng])
+          previous = point
+        }
       })
-      path.addTo(this.map);
-      console.log(path.getBounds())
-      if(JSON.stringify(path.getBounds()) != "{}") {
-      	this.map.fitBounds(path.getBounds(), {
-      		maxZoom: 16
-      	});
-      }
+      // for(var item of array){
+      //   this.addItem(item);
+      // }
+
+      // var path = antPath(p, {
+      //   "paused": false,
+      //   "reverse": false,
+      //   "delay": 3000,
+      //   "dashArray": [5, 20],
+      //   "weight": 5,
+      //   "opacity": 0.8,
+      //   "color": "#339933",
+      //   "pulseColor": "#11EE11"
+      // })
+      // path.addTo(this.map);
+      // console.log(path.getBounds())
+      // if(JSON.stringify(path.getBounds()) != "{}") {
+      // 	this.map.fitBounds(path.getBounds(), {
+      // 		maxZoom: 16
+      // 	});
+      // }
     }
   },
 }
