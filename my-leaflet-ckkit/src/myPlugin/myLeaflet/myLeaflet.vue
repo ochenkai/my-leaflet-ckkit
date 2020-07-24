@@ -113,10 +113,24 @@ export default {
       }
     },
     addPoints (p) {
-      let group=new L.layerGroup()
+      let group = new L.layerGroup()
       var previous = p[0]
       let pointArray = []
+      group.northEast = { lat: previous.lat, lng: previous.lng }
+      group.southWest = { lat: previous.lat, lng: previous.lng }
       p.forEach(point => {
+        if (point.lat > group.northEast.lat) {
+          group.northEast.lat = point.lat
+        }
+        if (point.lng > group.northEast.lng) {
+          group.northEast.lng = point.lng
+        }
+        if (point.lat < group.southWest.lat) {
+          group.southWest.lat = point.lat
+        }
+        if (point.lng < group.southWest.lng) {
+          group.southWest.lng = point.lng
+        }
         if (previous.color === point.color) {
           pointArray.push([point.lat, point.lng])
           previous = point
@@ -129,36 +143,38 @@ export default {
             "weight": 5,
             "opacity": 0.8,
             "color": previous.color,
-            "pulseColor": "#11EE11"
+            "pulseColor": previous.color
           })
-          path.addTo(this.map);
+          path.addTo(group);
           pointArray = []
           pointArray.push([previous.lat, previous.lng])
           pointArray.push([point.lat, point.lng])
           previous = point
         }
       })
-      // for(var item of array){
-      //   this.addItem(item);
-      // }
+      var path = antPath(pointArray, {
+        "paused": false,
+        "reverse": false,
+        "delay": 3000,
+        "dashArray": [5, 20],
+        "weight": 5,
+        "opacity": 0.8,
+        "color": previous.color,
+        "pulseColor": previous.color
+      })
 
-      // var path = antPath(p, {
-      //   "paused": false,
-      //   "reverse": false,
-      //   "delay": 3000,
-      //   "dashArray": [5, 20],
-      //   "weight": 5,
-      //   "opacity": 0.8,
-      //   "color": "#339933",
-      //   "pulseColor": "#11EE11"
-      // })
-      // path.addTo(this.map);
-      // console.log(path.getBounds())
-      // if(JSON.stringify(path.getBounds()) != "{}") {
-      // 	this.map.fitBounds(path.getBounds(), {
-      // 		maxZoom: 16
-      // 	});
-      // }
+      path.addTo(group);
+      group.getBounds = function () {
+        let c1 = [group.northEast.lat, group.northEast.lng]
+        let c2 = [group.southWest.lat, group.southWest.lng]
+        return L.latLngBounds(c1, c2);
+      }
+      group.addTo(this.map)
+      if(JSON.stringify(group.getBounds()) != "{}") {
+      	this.map.fitBounds(group.getBounds(), {
+      		maxZoom: 16
+      	});
+      }
     }
   },
 }
