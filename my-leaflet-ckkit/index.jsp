@@ -269,15 +269,15 @@
         color: #555;
         border: 1px solid #aaa;
         text-shadow: none;
-        border-radius: 4px;	
+        border-radius: 4px;
         transition: box-shadow 0.25s ease;
         z-index: 2;
       }
-     
+
       .select-component:hover {
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
       }
-     
+
       .select-component:before {
         content: "";
         position: absolute;
@@ -300,7 +300,7 @@
         -webkit-appearance: none;
         -moz-appearance: none;
       }
-     
+
       .select-component select:focus {
         outline: none;
       }
@@ -361,11 +361,11 @@
       @-webkit-keyframes saomiao {
         0% {
             /* width: 90%; */
-    
+
             -webkit-transform: translate3d(-325px, 0, 0);
             -ms-transform: translate3d(-325px, 0, 0);
             transform: translate3d(-325px, 0, 0);
-    
+
         }
         100% {
             /* width: 0; */
@@ -375,15 +375,15 @@
             transform: translate3d(325px, 0, 0);
         }
       }
-      
+
       @keyframes saomiao {
         0% {
             /* width: 90%; */
-    
+
             -webkit-transform: translate3d(-325px, 0, 0);
             -ms-transform: translate3d(325px, 0, 0);
             transform: translate3d(-325px, 0, 0);
-    
+
         }
         100% {
             /* width: 0; */
@@ -669,18 +669,18 @@
                     </div>
                     <div class="row_ro">
                       <div class="identify_result_box3" id="identify_result_box1" style="display: block;">
-                        
+
                       </div>
                     </div>
                     <!-- 上传按钮 -->
                     <form class="col-md-10" id="upload"  method="post" enctype="multipart/form-data">
                       <div>
                         <div class="local_upload" id="local_upload">
-                            选择图片 
-                          <input id="file" type="file" class="local_upload_file" onchange="changePicture(this)" bi_name="图像标签-本地上传处理"> 
+                            选择图片
+                          <input id="file" type="file" class="local_upload_file" onchange="changePicture(this)" bi_name="图像标签-本地上传处理">
                         </div>
                         <div id="testUploadVideo" class="local_upload" id="local_upload" onclick="testUploadImg()">
-                            上传图片 
+                            上传图片
                         </div>
                       </div>
                     </form>
@@ -783,7 +783,7 @@
                       <div>
                         <div class="local_upload" id="local_upload">
                             选择视频
-                          <input id="video" type="file" class="local_upload_file" bi_name="视频标签-本地上传处理"> 
+                          <input id="video" type="file" class="local_upload_file" bi_name="视频标签-本地上传处理">
                         </div>
                         <div id="testUploadVideo" class="local_upload" id="local_upload" onclick="testUploadVideo()">
                             上传视频
@@ -854,13 +854,13 @@
                     </div>
                     <div class="row_ro">
                       <div class="loading_list" style="display: none;">
-                         <img src="//res-img1.huaweicloud.com/content/dam/cloudbu-site/archive/china/zh-cn/ei/experiencespace/v1/images/comm/loading.png" class="loading_icon" alt=""> 
+                         <img src="//res-img1.huaweicloud.com/content/dam/cloudbu-site/archive/china/zh-cn/ei/experiencespace/v1/images/comm/loading.png" class="loading_icon" alt="">
                          <div class="loading_list_text">
                           正在分析中...
-                         </div> 
+                         </div>
                       </div>
                       <div class="identify_result_box3" id="identify_result_box3" style="display: block;">
-                        
+
                       </div>
                     </div>
                     <!-- 上传按钮 -->
@@ -868,7 +868,7 @@
                       <div>
                         <div class="local_upload" id="local_upload">
                             选择文件夹
-                          <input id="route" name="route" type="file" class="local_upload_file" bi_name="文件夹标签-本地上传处理" webkitdirectory directory onchange="changeFolder(this)" /> 
+                          <input id="route" name="route" type="file" class="local_upload_file" bi_name="文件夹标签-本地上传处理" webkitdirectory directory onchange="changeFolder(this)" />
                         </div>
                         <div id="testUploadVideo" class="local_upload" id="local_upload" onclick="testUploadRoute()">
                             上传文件夹
@@ -882,15 +882,15 @@
               <div></div>
             </div>
           </div>
-        
+
         </div>
       </div>
     </div>
   </body>
   <script type="text/javascript">
-    // 点击tab 
+    // 点击tab
     function NavTab(i, e) {
-      // 添加tab选中样式 
+      // 添加tab选中样式
       $('.secondary_nav_box').removeClass('secondary_nav_add')
       $('.secondary_nav_box').eq(i - 1).addClass('secondary_nav_add')
       //显示隐藏 图片分区
@@ -917,18 +917,19 @@
       let boxObj = itemStr
       var idStr = boxObj.center_x + '' + boxObj.center_y + '' + boxObj.width + '' + boxObj.height
       idStr = idStr.replace(/\./g,"_")
-      let w = $("#img1").width()
-      let h = $("#img1").height()
-      let imgLeft = boxObj.center_x * w
-      let imgTop = boxObj.center_y * h
-      let imgW = boxObj.width * w
-      let imgH = boxObj.height * h
-      var leftOffset = 0
-      if (w < 740) {
-        leftOffset = (740 - w) * 0.5
-      }
+      console.log($("#"+idStr))
       if (t == 3) {
-        if ($(`#${idStr}`).length === 0) {
+        let w = $("#img3").width()
+        let h = $("#img3").height()
+        let imgLeft = boxObj.center_x * w
+        let imgTop = boxObj.center_y * h
+        let imgW = boxObj.width * w
+        let imgH = boxObj.height * h
+        var leftOffset = 0
+        if (w < 740) {
+          leftOffset = (740 - w) * 0.5
+        }
+        if ($('#'+idStr).length === 0) {
           var box = $("<div id="+idStr+"></div>")
           box.css({
             "border":"4px solid yellow",
@@ -941,18 +942,20 @@
           });
           $('#picture_icon3').append(box)
         } else {
-          $(`#${idStr}`).css({
-            "border":"4px solid yellow",
-            "left": imgLeft - (imgW * 0.5) + leftOffset + "px",
-            "top": imgTop - (imgH * 0.5) + "px",
-            "width": imgW + "px",
-            "height": imgH + "px",
-            "position": "absolute",
-            "box-sizing": "border-box"
-          });
+          $('#'+idStr).remove()
         }
       } else {
-        if ($(`#${idStr}`).length === 0) {
+        let w = $("#img1").width()
+        let h = $("#img1").height()
+        let imgLeft = boxObj.center_x * w
+        let imgTop = boxObj.center_y * h
+        let imgW = boxObj.width * w
+        let imgH = boxObj.height * h
+        var leftOffset = 0
+        if (w < 740) {
+          leftOffset = (740 - w) * 0.5
+        }
+        if ($('#'+idStr).length === 0) {
           var box = $("<div id="+idStr+"></div>")
           box.css({
             "border":"4px solid yellow",
@@ -965,18 +968,10 @@
           });
           $('#picture_icon1').append(box)
         } else {
-          $(`#${idStr}`).css({
-            "border":"4px solid yellow",
-            "left": imgLeft - (imgW * 0.5) + leftOffset + "px",
-            "top": imgTop - (imgH * 0.5) + "px",
-            "width": imgW + "px",
-            "height": imgH + "px",
-            "position": "absolute",
-            "box-sizing": "border-box"
-          });
+          $('#'+idStr).remove()
         }
       }
-      
+
     }
     function gradeChange(){
       var objS = document.getElementById("scene");
@@ -1006,7 +1001,7 @@
          $('#type').append(html);
       }
     }
-    // 修改分类 
+    // 修改分类
     function changeSelect(e) {
       console.log(e.value)
       let typeName = e.value
@@ -1018,7 +1013,7 @@
         success: function(res) {
           // console.log(res)
           $('.category-box-list .out-box').remove();
-          var obj = res.split(','); 
+          var obj = res.split(',');
           var html = "";
           for (var i in obj) {
           	html += "<div class=\"out-box\">";
@@ -1042,7 +1037,7 @@
             // console.log(e.width)
         };
         img.src = _URL.createObjectURL(file);
-        $('.picture_icon div').remove()
+        $('#picture_icon1 div').remove()
       }
     }
     // 图片列表 滚动
@@ -1066,6 +1061,8 @@
       if (!$(e).attr('data-src')) {
         return
       }
+      $('#identify_result_box3 .identify_result_ciy.col-md-5').remove();
+      $('#picture_icon3 div').remove()
       $('.loadingBox.loading_Box').show()
       $('.loading_list').show()
       if (timerInt) {
@@ -1079,12 +1076,12 @@
           cache: false, // 上传文件无需缓存
           success: function(res) {
             // alert("生成成功");
-            $('#identify_result_box3 .identify_result_ciy.col-md-5').remove();
-            
+
             $("#img3").attr("src","/tset-hd-web/uploadflv/showImage?path="+JSON.parse(res).entity.filename);
-            var obj = jQuery.parseJSON(JSON.parse(res).entity.jsonArray); 
+            var obj = jQuery.parseJSON(JSON.parse(res).entity.jsonArray);
             $('.loadingBox.loading_Box').hide()
             $('.loading_list').hide()
+            clearInterval(timerInt);
             var html = "";
             for (var i in obj) {
             	html += "<div class=\"identify_result_ciy col-md-5\">";
@@ -1101,19 +1098,20 @@
           }
         })
       }, 5000);
-      
+
     }
-     
+
     //上传图片
     function testUploadImg() {
     	var type = document.getElementById("type");
-      var val = type.options[type.selectedIndex].value;	
+      var val = type.options[type.selectedIndex].value;
       alert("系统正在识别，请稍后......")
       var fileObj = document.getElementById("file").files[0]; //获取文件对象
 	    var formFile = new FormData();
 	    formFile.append("param", "100"); //传入需要传的参数
 	    formFile.append("file", fileObj); // 加入文件对象
 	    var data = formFile;
+      $('#identify_result_box1 .identify_result_ciy.col-md-5').remove();
       // 动画 扫描图片 开启：$('.loadingBox.loading_Box').show()，结束：$('.loadingBox.loading_Box').hide()
       $('.loadingBox.loading_Box').show()
 	    $.ajax({
@@ -1125,11 +1123,10 @@
 	      contentType: false, // 必须
 	      success: function(res) {
           alert("生成成功");
-          
+
 	        $('.loadingBox.loading_Box').hide()
-          $('#identify_result_box1 .identify_result_ciy.col-md-5').remove();
 	        $("#img1").attr("src","/tset-hd-web/uploadflv/showImage?path="+JSON.parse(res).entity.filename);
-	        var obj = jQuery.parseJSON(JSON.parse(res).entity.jsonArray); 
+	        var obj = jQuery.parseJSON(JSON.parse(res).entity.jsonArray);
 	        var html = "";
 	        for (var i in obj) {
 	        	html += "<div class=\"identify_result_ciy col-md-5\">";
@@ -1146,12 +1143,12 @@
 	      }
 	    })
     }
-    
+
     //上传视频
     function testUploadVideo() {
-      
+
     }
-    
+
     //文件路径
     var formData = null;
     function testUploadRoute() {
@@ -1161,10 +1158,10 @@
         data: formData,
         processData: false,    // ⑧告诉jQuery不要去处理发送的数据
         contentType: false, // 必须
-        success: function (res) {                 
+        success: function (res) {
             // alert(responseStr);
           $('#bottom-images-list .bottom-image-item').remove();
-          var obj = res.split(','); 
+          var obj = res.split(',');
           $("#img3").attr("src","/tset-hd-web/uploadflv/showImage?path=" + obj[0]);
           var html = "";
           for (var i in obj) {
@@ -1181,35 +1178,35 @@
         }
       });
     }
-    
+
     //文件数量限制
-    var filesCount=2000;  
-    //文件夹大小限制 2000M  
-    var filesSize=2147483648;  
-    //实际的文件数量  
-    var actual_filesCount=0;  
-    //实际的文件夹大小  
+    var filesCount=2000;
+    //文件夹大小限制 2000M
+    var filesSize=2147483648;
+    //实际的文件数量
+    var actual_filesCount=0;
+    //实际的文件夹大小
     var actual_filesSize=0;
     function changeFolder(e) {
       // console.log(e)
-      //判断是否选中文件  
-       var file=$("#fileFolder").val();  
-       if(file!=''){  
-           $("#msg").text('');  
-       }  
-       var files = e.files; // FileList  
-       //文件数量  
-       actual_filesCount = files.length;  
-       if(actual_filesCount > filesCount){  
-          $("#msg").text("文件过多，单次最多可上传"+filesCount+"个文件");  
-          return;  
-       }  
-       for (var i = 0, f; f = files[i]; ++i){  
-           actual_filesSize += f.size;  
-           if(actual_filesSize > filesSize){  
-              $("#msg").text("单次文件夹上传不能超过"+filesSize+"/1024/1024M");  
-              return;  
-           }  
+      //判断是否选中文件
+       var file=$("#fileFolder").val();
+       if(file!=''){
+           $("#msg").text('');
+       }
+       var files = e.files; // FileList
+       //文件数量
+       actual_filesCount = files.length;
+       if(actual_filesCount > filesCount){
+          $("#msg").text("文件过多，单次最多可上传"+filesCount+"个文件");
+          return;
+       }
+       for (var i = 0, f; f = files[i]; ++i){
+           actual_filesSize += f.size;
+           if(actual_filesSize > filesSize){
+              $("#msg").text("单次文件夹上传不能超过"+filesSize+"/1024/1024M");
+              return;
+           }
        }
       formData = new FormData();
       var imgList = []
@@ -1226,7 +1223,7 @@
             };
             img.src = _URL.createObjectURL(file);
           }
-        } 
+        }
         if ((file = files[i])) {
           img = new Image();
           img.onload = function() {
